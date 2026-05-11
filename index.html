@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Verification — Claude AI Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #111827;
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-pale: #E8C96A;
+    --gold-dark: #8B6914;
+    --white: #FFFFFF;
+    --off-white: #F5F0E8;
+    --gray: #9CA3AF;
+    --gray-dark: #6B7280;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--navy);
+    color: var(--off-white);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .academy-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .logo-seal {
+    width: 48px;
+    height: 48px;
+  }
+
+  .academy-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .header-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto;
+  }
+
+  .header-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* Certificate Card */
+  .cert-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 2px;
+    padding: 56px 64px;
+    position: relative;
+    margin-bottom: 40px;
+    animation: fadeUp 0.9s ease 0.2s both;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    margin: 8px;
+    pointer-events: none;
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+  .corner-tl { top: 16px; left: 16px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-tr { top: 16px; right: 16px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+  .corner-bl { bottom: 16px; left: 16px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-br { bottom: 16px; right: 16px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+  .verified-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .verified-dot {
+    width: 8px;
+    height: 8px;
+    background: #22C55E;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  }
+
+  .verified-text {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #22C55E;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .cert-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cert-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .cert-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--off-white);
+    margin-bottom: 32px;
+  }
+
+  .cert-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-pale), var(--gold-dark));
+    margin-bottom: 32px;
+    opacity: 0.5;
+  }
+
+  .cert-program {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 6px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .cert-program strong {
+    color: var(--off-white);
+    font-weight: 500;
+  }
+
+  .cert-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .meta-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .meta-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold-pale);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  .cert-id-box {
+    background: rgba(201, 168, 76, 0.06);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    padding: 16px 24px;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .cert-id-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .cert-id-value {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  /* Modules Section */
+  .modules-section {
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .section-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201, 168, 76, 0.2);
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .module-item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    border-radius: 2px;
+    padding: 16px 20px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .module-item:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.04);
+  }
+
+  .module-tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .module-name {
+    font-size: 13px;
+    color: var(--off-white);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .module-desc {
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* Tools */
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  .tool-tag {
+    background: rgba(201, 168, 76, 0.08);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    padding: 6px 14px;
+    font-size: 11px;
+    color: var(--gold-pale);
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dark);
+    margin: 0 auto 20px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: var(--gray-dark);
+    letter-spacing: 0.1em;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .cert-card { padding: 36px 28px; }
+    .cert-name { font-size: 36px; }
+    .cert-meta { grid-template-columns: 1fr 1fr; }
+    .modules-grid { grid-template-columns: 1fr; }
+    .cert-id-box { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="academy-logo">
+      <svg class="logo-seal" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" stroke="#C9A84C" stroke-width="1.5"/>
+        <circle cx="24" cy="24" r="18" stroke="#E8C96A" stroke-width="0.5"/>
+        <text x="24" y="21" text-anchor="middle" fill="#C9A84C" font-family="Montserrat" font-size="6" font-weight="700" letter-spacing="0.5">CLAUDE</text>
+        <text x="24" y="29" text-anchor="middle" fill="#C9A84C" font-family="Montserrat" font-size="5" font-weight="600" letter-spacing="0.3">AI ACADEMY</text>
+        <circle cx="24" cy="35" r="1.5" fill="#E8C96A"/>
+      </svg>
+      <span class="academy-name">Claude AI Academy</span>
+    </div>
+    <div class="header-divider"></div>
+    <p class="header-subtitle">Certificate Verification Portal</p>
+  </div>
+
+  <!-- Certificate Card -->
+  <div class="cert-card">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="verified-badge">
+      <div class="verified-dot"></div>
+      <span class="verified-text">Certificate Verified</span>
+    </div>
+
+    <p class="cert-label">This certifies that</p>
+    <h1 class="cert-name">Carlos Perkinson</h1>
+    <p class="cert-title">AI Automation Architect — BDM Edition</p>
+
+    <div class="cert-divider"></div>
+
+    <p class="cert-program">Program: <strong>AI Automation Architect · Blocks 0–3 · Modules M1–M11</strong></p>
+    <p class="cert-program">Issued by: <strong>Claude AI Academy</strong></p>
+
+    <div class="cert-meta">
+      <div class="meta-item">
+        <label>Date of Issue</label>
+        <span>May 2026</span>
+      </div>
+      <div class="meta-item">
+        <label>Training Hours</label>
+        <span>50–70 hours</span>
+      </div>
+      <div class="meta-item">
+        <label>Status</label>
+        <span style="color: #22C55E;">Active</span>
+      </div>
+    </div>
+
+    <div class="cert-id-box">
+      <span class="cert-id-label">Certificate ID</span>
+      <span class="cert-id-value">CAA-2026-CP-M11-0509</span>
+    </div>
+  </div>
+
+  <!-- Modules -->
+  <div class="modules-section">
+    <p class="section-title">Program Curriculum</p>
+
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-tag">Block 0</div>
+        <div class="module-name">Auto-Responder</div>
+        <div class="module-desc">Event-driven email automation with Gmail Trigger and Claude API</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M1 – M2</div>
+        <div class="module-name">Pipeline Design & Classification</div>
+        <div class="module-desc">Workflow mapping and AI-powered email classification with structured JSON output</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M3 – M4</div>
+        <div class="module-name">CRM Integration & Calendar CTA</div>
+        <div class="module-desc">HubSpot Contact + Deal creation, Google Calendar booking link automation</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M5</div>
+        <div class="module-name">Multi-Source Ingestion</div>
+        <div class="module-desc">Outlook/Hotmail as second email source with character sanitization and loop processing</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M6 – M7</div>
+        <div class="module-name">Enrichment & Lead Scoring</div>
+        <div class="module-desc">Apollo.io API integration and dynamic lead scoring with HubSpot property updates</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M8</div>
+        <div class="module-name">Automated Follow-Up</div>
+        <div class="module-desc">Schedule-triggered pipeline review with AI-generated personalized follow-up drafts</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M9</div>
+        <div class="module-name">Modular Architecture</div>
+        <div class="module-desc">Refactored system into specialized workflows: Ingestor, CRM, and Nurture</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M10</div>
+        <div class="module-name">Contextual Memory (RAG)</div>
+        <div class="module-desc">Full lead history passed to Claude for coherent, personalized responses across weeks</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M11</div>
+        <div class="module-name">Autonomous AI Agent</div>
+        <div class="module-desc">Claude decides actions without IF logic — tools: Ingestor, CRM, Nurture called autonomously</div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <p class="section-title">Tools & Technologies</p>
+    <div class="tools-grid">
+      <span class="tool-tag">n8n</span>
+      <span class="tool-tag">Claude API</span>
+      <span class="tool-tag">HubSpot CRM</span>
+      <span class="tool-tag">Google Sheets</span>
+      <span class="tool-tag">Gmail</span>
+      <span class="tool-tag">Outlook</span>
+      <span class="tool-tag">AI Agents</span>
+      <span class="tool-tag">RAG</span>
+      <span class="tool-tag">Apollo.io</span>
+      <span class="tool-tag">Google Calendar</span>
+      <span class="tool-tag">MCP</span>
+      <span class="tool-tag">Webhooks</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-divider"></div>
+      <p class="footer-text">This certificate was issued by Claude AI Academy · May 2026</p>
+      <p class="footer-text" style="margin-top: 6px;">carlosperkinson.github.io/certificado</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
