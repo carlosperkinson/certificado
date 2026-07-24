@@ -29,6 +29,7 @@
     overflow-x: hidden;
   }
 
+  /* Subtle noise texture overlay */
   body::before {
     content: '';
     position: fixed;
@@ -47,6 +48,7 @@
     padding: 60px 24px 80px;
   }
 
+  /* Header */
   .header {
     text-align: center;
     margin-bottom: 64px;
@@ -88,6 +90,7 @@
     text-transform: uppercase;
   }
 
+  /* Certificate Card */
   .cert-card {
     background: var(--navy-mid);
     border: 1px solid rgba(201, 168, 76, 0.3);
@@ -108,6 +111,7 @@
     pointer-events: none;
   }
 
+  /* Corner decorations */
   .corner {
     position: absolute;
     width: 20px;
@@ -244,6 +248,7 @@
     letter-spacing: 0.1em;
   }
 
+  /* Modules Section */
   .modules-section {
     animation: fadeUp 1s ease 0.4s both;
   }
@@ -309,6 +314,7 @@
     font-weight: 300;
   }
 
+  /* Tools */
   .tools-grid {
     display: flex;
     flex-wrap: wrap;
@@ -327,6 +333,7 @@
     font-weight: 400;
   }
 
+  /* Footer */
   .footer {
     text-align: center;
     animation: fadeUp 1s ease 0.6s both;
@@ -345,6 +352,7 @@
     letter-spacing: 0.1em;
   }
 
+  /* Animations */
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -385,4 +393,128 @@
 
   <!-- Certificate Card -->
   <div class="cert-card">
-    <div
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="verified-badge">
+      <div class="verified-dot"></div>
+      <span class="verified-text">Certificate Verified</span>
+    </div>
+
+    <p class="cert-label">This certifies that</p>
+    <h1 class="cert-name">Carlos Perkinson</h1>
+    <p class="cert-title">AI Automation Architect — BDM Edition</p>
+
+    <div class="cert-divider"></div>
+
+    <p class="cert-program">Program: <strong>AI Automation Architect · Blocks 0–3 · Modules M1–M11</strong></p>
+    <p class="cert-program">Issued by: <strong>Claude AI Academy</strong></p>
+
+    <div class="cert-meta">
+      <div class="meta-item">
+        <label>Date of Issue</label>
+        <span>May 2026</span>
+      </div>
+      <div class="meta-item">
+        <label>Training Hours</label>
+        <span>50–70 hours</span>
+      </div>
+      <div class="meta-item">
+        <label>Status</label>
+        <span style="color: #22C55E;">Active</span>
+      </div>
+    </div>
+
+    <div class="cert-id-box">
+      <span class="cert-id-label">Certificate ID</span>
+      <span class="cert-id-value">CAA-2026-CP-M11-0509</span>
+    </div>
+  </div>
+
+  <!-- Modules -->
+  <div class="modules-section">
+    <p class="section-title">Program Curriculum</p>
+
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-tag">Block 0</div>
+        <div class="module-name">Auto-Responder</div>
+        <div class="module-desc">Event-driven email automation with Gmail Trigger and Claude API</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M1 – M2</div>
+        <div class="module-name">Pipeline Design & Classification</div>
+        <div class="module-desc">Workflow mapping and AI-powered email classification with structured JSON output</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M3 – M4</div>
+        <div class="module-name">CRM Integration & Calendar CTA</div>
+        <div class="module-desc">HubSpot Contact + Deal creation, Google Calendar booking link automation</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M5</div>
+        <div class="module-name">Multi-Source Ingestion</div>
+        <div class="module-desc">Outlook/Hotmail as second email source with character sanitization and loop processing</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M6 – M7</div>
+        <div class="module-name">Enrichment & Lead Scoring</div>
+        <div class="module-desc">Apollo.io API integration and dynamic lead scoring with HubSpot property updates</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M8</div>
+        <div class="module-name">Automated Follow-Up</div>
+        <div class="module-desc">Schedule-triggered pipeline review with AI-generated personalized follow-up drafts</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M9</div>
+        <div class="module-name">Modular Architecture</div>
+        <div class="module-desc">Refactored system into specialized workflows: Ingestor, CRM, and Nurture</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M10</div>
+        <div class="module-name">Contextual Memory (RAG)</div>
+        <div class="module-desc">Full lead history passed to Claude for coherent, personalized responses across weeks</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M11</div>
+        <div class="module-name">Autonomous AI Agent</div>
+        <div class="module-desc">Claude decides actions without IF logic — tools: Ingestor, CRM, Nurture called autonomously</div>
+      </div>
+      <div class="module-item">
+        <div class="module-tag">M12</div>
+        <div class="module-name">Applied Production Build</div>
+        <div class="module-desc">Multi-branch pipeline generation system built and validated in live production for a real B2B sales role — Apollo enrichment, AI scoring, HubSpot CRM, and automated outreach drafts</div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <p class="section-title">Tools & Technologies</p>
+    <div class="tools-grid">
+      <span class="tool-tag">n8n</span>
+      <span class="tool-tag">Claude API</span>
+      <span class="tool-tag">HubSpot CRM</span>
+      <span class="tool-tag">Google Sheets</span>
+      <span class="tool-tag">Gmail</span>
+      <span class="tool-tag">Outlook</span>
+      <span class="tool-tag">AI Agents</span>
+      <span class="tool-tag">RAG</span>
+      <span class="tool-tag">Apollo.io</span>
+      <span class="tool-tag">Google Calendar</span>
+      <span class="tool-tag">MCP</span>
+      <span class="tool-tag">Webhooks</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-divider"></div>
+      <p class="footer-text">This certificate was issued by Claude AI Academy · May 2026</p>
+      <p class="footer-text" style="margin-top: 6px;">carlosperkinson.github.io/certificado</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
