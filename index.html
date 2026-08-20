@@ -29,7 +29,6 @@
     overflow-x: hidden;
   }
 
-  /* Subtle noise texture overlay */
   body::before {
     content: '';
     position: fixed;
@@ -48,7 +47,6 @@
     padding: 60px 24px 80px;
   }
 
-  /* Header */
   .header {
     text-align: center;
     margin-bottom: 64px;
@@ -90,7 +88,6 @@
     text-transform: uppercase;
   }
 
-  /* Certificate Card */
   .cert-card {
     background: var(--navy-mid);
     border: 1px solid rgba(201, 168, 76, 0.3);
@@ -111,7 +108,6 @@
     pointer-events: none;
   }
 
-  /* Corner decorations */
   .corner {
     position: absolute;
     width: 20px;
@@ -248,7 +244,6 @@
     letter-spacing: 0.1em;
   }
 
-  /* Modules Section */
   .modules-section {
     animation: fadeUp 1s ease 0.4s both;
   }
@@ -314,7 +309,6 @@
     font-weight: 300;
   }
 
-  /* Tools */
   .tools-grid {
     display: flex;
     flex-wrap: wrap;
@@ -333,7 +327,6 @@
     font-weight: 400;
   }
 
-  /* Footer */
   .footer {
     text-align: center;
     animation: fadeUp 1s ease 0.6s both;
@@ -352,7 +345,6 @@
     letter-spacing: 0.1em;
   }
 
-  /* Animations */
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -375,7 +367,6 @@
 <body>
 <div class="container">
 
-  <!-- Header -->
   <div class="header">
     <div class="academy-logo">
       <svg class="logo-seal" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -391,7 +382,6 @@
     <p class="header-subtitle">Certificate Verification Portal</p>
   </div>
 
-  <!-- Certificate Card -->
   <div class="cert-card">
     <div class="corner corner-tl"></div>
     <div class="corner corner-tr"></div>
@@ -409,7 +399,7 @@
 
     <div class="cert-divider"></div>
 
-    <p class="cert-program">Program: <strong>AI Automation Architect · Blocks 0–3 · Modules M1–M12</strong></p>
+    <p class="cert-program">Program: <strong>AI Automation Architect · Blocks 0–3 · Modules M1–M13</strong></p>
     <p class="cert-program">Issued by: <strong>Claude AI Academy</strong></p>
 
     <div class="cert-meta">
@@ -419,7 +409,7 @@
       </div>
       <div class="meta-item">
         <label>Training Hours</label>
-        <span>50–70 hours</span>
+        <span>80–100 hours</span>
       </div>
       <div class="meta-item">
         <label>Status</label>
@@ -433,7 +423,6 @@
     </div>
   </div>
 
-  <!-- Modules -->
   <div class="modules-section">
     <p class="section-title">Program Curriculum</p>
 
@@ -445,12 +434,12 @@
       </div>
       <div class="module-item">
         <div class="module-tag">M1 – M2</div>
-        <div class="module-name">Pipeline Design & Classification</div>
+        <div class="module-name">Pipeline Design &amp; Classification</div>
         <div class="module-desc">Workflow mapping and AI-powered email classification with structured JSON output</div>
       </div>
       <div class="module-item">
         <div class="module-tag">M3 – M4</div>
-        <div class="module-name">CRM Integration & Calendar CTA</div>
+        <div class="module-name">CRM Integration &amp; Calendar CTA</div>
         <div class="module-desc">HubSpot Contact + Deal creation, Google Calendar booking link automation</div>
       </div>
       <div class="module-item">
@@ -460,7 +449,7 @@
       </div>
       <div class="module-item">
         <div class="module-tag">M6 – M7</div>
-        <div class="module-name">Enrichment & Lead Scoring</div>
+        <div class="module-name">Enrichment &amp; Lead Scoring</div>
         <div class="module-desc">Apollo.io API integration and dynamic lead scoring with HubSpot property updates</div>
       </div>
       <div class="module-item">
@@ -488,10 +477,14 @@
         <div class="module-name">Applied Production Build</div>
         <div class="module-desc">Multi-branch pipeline generation system built and validated in live production for a real B2B sales role — Apollo enrichment, AI scoring, HubSpot CRM, and automated outreach drafts</div>
       </div>
+      <div class="module-item">
+        <div class="module-tag">M13</div>
+        <div class="module-name">Predictive Lead Scoring &amp; Signal Automation</div>
+        <div class="module-desc">Weighted 4-factor scoring engine (Fit, Intent, Reachability, Value) built in Clay with real-time funding/news signal monitoring, connected via webhook to n8n for automated high-priority lead alerts</div>
+      </div>
     </div>
 
-    <!-- Tools -->
-    <p class="section-title">Tools & Technologies</p>
+    <p class="section-title">Tools &amp; Technologies</p>
     <div class="tools-grid">
       <span class="tool-tag">n8n</span>
       <span class="tool-tag">Claude API</span>
@@ -505,9 +498,9 @@
       <span class="tool-tag">Google Calendar</span>
       <span class="tool-tag">MCP</span>
       <span class="tool-tag">Webhooks</span>
+      <span class="tool-tag">Clay</span>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
       <div class="footer-divider"></div>
       <p class="footer-text">This certificate was issued by Claude AI Academy · May 2026</p>
